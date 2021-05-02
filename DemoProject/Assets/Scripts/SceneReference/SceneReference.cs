@@ -1,6 +1,7 @@
 /*
  * Author: Jonatan Johansson
  * Updated: 2021-05-02
+ * Project: https://github.com/smeas/Unity-Editor-Utilities
  */
 
 using System;
