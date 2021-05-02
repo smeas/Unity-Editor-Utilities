@@ -2,11 +2,11 @@
 
 A collection of single file editor utilities for the Unity game engine.
 
-## Scene Reference
+## Scene Reference ([link](DemoProject/Assets/Scripts/SceneReference/SceneReference.cs))
 
-A utility type that holds a reference to a scene. The type is implemented as a
-struct that stores just the build index of the scene (only in builds), making it
-mostly equivalent to just storing an int.
+A utility type that holds a reference to a scene. The type is efficiently
+implemented as a struct that stores just the build index of the scene (only in
+builds), making it essentially equivalent to just storing an int.
 
 ![Scene reference demo](Images/SceneReference_Demo.gif)
 
