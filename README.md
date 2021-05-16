@@ -2,7 +2,7 @@
 
 A collection of single file editor utilities for the Unity game engine.
 
-## Scene Reference ([link](DemoProject/Assets/Scripts/SceneReference/SceneReference.cs))
+## Scene Reference ([link](DemoProject/Assets/Scripts/SceneReference.cs))
 
 A utility type that holds a safe reference to a scene.
 
@@ -26,7 +26,7 @@ private void Start() {
 }
 ```
 
-## Conditional Attributes ([link](DemoProject/Assets/Scripts/ConditionalProperty/ConditionalPropertyAttributes.cs))
+## Conditional Attributes ([link](DemoProject/Assets/Scripts/ConditionalPropertyAttributes.cs))
 
 Attributes allowing you to hide/disable serialized fields depending on the 
 values of other fields. Note that it currently only supports checking other 
