@@ -4,26 +4,49 @@ A collection of single file editor utilities for the Unity game engine.
 
 ## Scene Reference ([link](DemoProject/Assets/Scripts/SceneReference/SceneReference.cs))
 
-A utility type that holds a reference to a scene. The type is efficiently
-implemented as a struct that stores just the build index of the scene (only in
-builds), making it essentially equivalent to just storing an int.
+A utility type that holds a safe reference to a scene.
 
 ![Scene reference demo](Images/SceneReference_Demo.gif)
 
 ### Features
-- No runtime overhead (in builds)
 - Rename scenes without needing to update references
-- Warns you if a scene is not in the build settings
+- Warns you if a selected scene is not in the build settings
 - Easily add/remove scenes from build settings right in the inspector
+- No runtime overhead (in builds)
 
 ### Usage
 
 ```c#
-[SerializeField] private SceneReference myScene;
+public SceneReference myScene;
 
 private void Start() {
     myScene.Load();
     // Or
     SceneManager.Load(myScene); // Implicit cast to int (build index)
 }
+```
+
+## Conditional Attributes ([link](DemoProject/Assets/Scripts/ConditionalProperty/ConditionalPropertyAttributes.cs))
+
+Attributes allowing you to hide/disable serialized fields depending on the 
+values of other fields. Note that it currently only supports checking other 
+fields. Property and method support might be added in the future.
+
+![Conditional attributes demo](Images/ConditionalAttribute_Demo.gif)
+
+### Usage
+
+```c#
+public Mode mode;
+
+[ShowIf(nameof(mode), Mode.Random)] // Equality
+public float randomWeight;
+
+public bool enableAdvancedSettings;
+
+[EnableIf(nameof(enableAdvancedSettings))]
+public int timeout;
+
+[EnableIf(nameof(enableAdvancedSettings), Invert = true)] // Inverted
+public int inverted;
 ```
