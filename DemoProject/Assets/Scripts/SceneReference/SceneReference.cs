@@ -1,6 +1,6 @@
 /*
  * Author: Jonatan Johansson
- * Updated: 2021-05-02
+ * Updated: 2021-05-16
  * Project: https://github.com/smeas/Unity-Editor-Utilities
  */
 
@@ -17,7 +17,7 @@ using UnityEditor;
 /// A reference to a scene which you can select from the inspector.
 /// </summary>
 [Serializable]
-public struct SceneReference : ISerializationCallbackReceiver {
+public struct SceneReference : IEquatable<SceneReference>, ISerializationCallbackReceiver {
 	// Only used in builds
 	[SerializeField] private int buildIndex;
 
@@ -72,6 +72,26 @@ public struct SceneReference : ISerializationCallbackReceiver {
 	// An implicit conversion to build index allows for passing a SceneReference directly to methods like
 	// SceneManager.LoadScene(int). It also makes it easier to update old code to use SceneReference.
 	public static implicit operator int(SceneReference sceneReference) => sceneReference.BuildIndex;
+
+	public static bool operator ==(SceneReference left, SceneReference right) => left.Equals(right);
+	public static bool operator !=(SceneReference left, SceneReference right) => !left.Equals(right);
+	public override bool Equals(object obj) => obj is SceneReference other && Equals(other);
+
+	public bool Equals(SceneReference other) {
+	#if UNITY_EDITOR
+		return sceneAsset == other.sceneAsset;
+	#else
+		return buildIndex == other.buildIndex;
+	#endif
+	}
+
+	public override int GetHashCode() {
+	#if UNITY_EDITOR
+		return sceneAsset != null ? sceneAsset.GetHashCode() : 0;
+	#else
+		return buildIndex;
+	#endif
+	}
 }
 
 
