@@ -2,6 +2,11 @@
 
 A collection of single file editor utilities for the Unity game engine.
 
+## Content
+- [Scene Reference](#scene-reference-link)
+- [Conditional Attributes](#conditional-attributes-link)
+- [Tag Attribute](#tag-attribute-link)
+
 ## Scene Reference ([link](DemoProject/Assets/Scripts/SceneReference.cs))
 
 A utility type that holds a safe reference to a scene.
@@ -49,4 +54,20 @@ public int timeout;
 
 [EnableIf(nameof(enableAdvancedSettings), Invert = true)] // Inverted
 public int inverted;
+```
+
+## Tag Attribute ([link](DemoProject/Assets/Scripts/TagAttribute.cs))
+
+Displays a tag selection dropdown for a string field.
+
+![](Images/TagAttribute.png)
+
+### Features
+- Warns on missing tags (yellow tint)
+- Manual string entry (right click)
+
+### Usage
+```c#
+[Tag]
+public string someTag;
 ```
